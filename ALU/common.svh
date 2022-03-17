@@ -4,13 +4,13 @@
 `timescale 1ns/1ps
 
 // ALU 
-`define ALU_AND  =   3'b000
-`define ALU_OR   =   3'b001
-`define ALU_ADD  =   3'b010
-`define ALU_RAND =   3'b100
-`define ALU_ROR  =   3'b101
-`define ALU_SUB  =   3'b110
-`define ALU_SLT  =   3'b111
+`define ALU_AND     3'b000
+`define ALU_OR      3'b001
+`define ALU_ADD     3'b010
+`define ALU_RAND    3'b100
+`define ALU_ROR     3'b101
+`define ALU_SUB     3'b110
+`define ALU_SLT     3'b111
 
 // types
 typedef logic[63:0]     u64;
