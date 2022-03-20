@@ -34,6 +34,9 @@ initial begin
 
     #10 A = 32'd10; B = 32'd11; ALUcont = `ALU_SLT;
     #10 $display("@%0t: A = %d, B = %d, ALUcont = %d, result = %d, zero = %d", $time, A, B, ALUcont, result, zero);
+    
+    #10 A = 32'd10; B = 32'd11; ALUcont = 3;
+    #10 $display("@%0t: A = %d, B = %d, ALUcont = %d, result = %d, zero = %d", $time, A, B, ALUcont, result, zero);
 end
 endmodule
 
