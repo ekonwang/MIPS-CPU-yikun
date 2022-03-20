@@ -28,7 +28,7 @@ always_comb begin
         `ALU_RAND   : result = A & ~B; 
         `ALU_ROR    : result = A | ~B; 
         `ALU_SUB    : result = A - B;
-        `ALU_SLT    : result = A < B ? '1 : '0;
+        `ALU_SLT    : result = A < B ? 1 : 0;
         default     : result = '0;
     endcase
 end
