@@ -7,7 +7,7 @@ module aludec(
     input u2    aluop,
     output u3   alucont
 );
-always_comb
+always_comb begin
     unique case(aluop)
         2'b00   :   alucont <= `ALU_ADD;  
         2'b01   :   alucont <= `ALU_SUB;

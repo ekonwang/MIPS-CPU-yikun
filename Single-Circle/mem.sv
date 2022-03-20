@@ -12,7 +12,7 @@ module dmem(
 );
 u32     data[63:0];
 assign  readdata = data[addr[31:2]];
-always_ff @(posedge clk)
+always @(posedge clk) begin
     if (we) data[addr[31:2]] <= writedata;
 end
 endmodule

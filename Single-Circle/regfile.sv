@@ -14,11 +14,11 @@ u32 registers[31:0];
 // three ported register file
 // note: for pipelined CPU, write third
 // port on falling edge of clk.
-always_ff @(posedge clk)
-    if (we3) rf[wa3] <= wd3;    
+always @(posedge clk) begin
+    if (we3) registers[wa3] <= wd3;    
 end
 
-assign rd1 = (ra1 != 0) > registers[ra1] : '0;
-assign rd2 = (ra2 != 0) > registers[ra2] : '0;
+assign rd1 = (ra1 != 0) ? registers[ra1] : '0;
+assign rd2 = (ra2 != 0) ? registers[ra2] : '0;
 
 endmodule

@@ -16,7 +16,7 @@ u9  controls;
 assign {regwrite, regdst, alusrc, branch, memwrite, 
         memtoreg, jump, aluop} = controls;
 
-always_comb
+always_comb begin
     unique case(op)
         `RTYPE  :   controls <= 9'b110000010;
         `LW     :   controls <= 9'b101001000;

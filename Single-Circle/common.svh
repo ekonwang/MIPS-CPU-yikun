@@ -42,10 +42,10 @@ typedef logic           u1;
 // controller
 `define RTYPE   6'b000000
 `define LW      6'b100011
-`define RW      6'b000100
+`define SW      6'b000100
 `define BEQ     6'b000100
 `define ADDI    6'b000100
-`define j       6'b000010
+`define J       6'b000010
 
 
 `endif
