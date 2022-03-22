@@ -14,7 +14,7 @@ module controller(
     output u1   jump,
     output u3   alucont   
 );
-u2  aluop;
+u3  aluop;
 u1  branch;
 //always begin
 //    # 1; 

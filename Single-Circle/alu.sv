@@ -4,7 +4,7 @@
 
 module aludec(
     input u6    funct,
-    input u2    aluop,
+    input u3    aluop,
     output u3   alucont
 );
 //always begin
@@ -13,9 +13,7 @@ module aludec(
 //end
 always_comb begin
     unique case(aluop)
-        2'b00   :   alucont <= `ALU_ADD;  
-        2'b01   :   alucont <= `ALU_SUB;
-        default: 
+        `ALU_NO_USE:
             unique case(funct)  // RTYPE
                 `FUNCT_ADD  :   alucont <= `ALU_ADD;
                 `FUNCT_SUB  :   alucont <= `ALU_SUB;
@@ -24,6 +22,8 @@ always_comb begin
                 `FUNCT_SLT  :   alucont <= `ALU_SLT;
                 default     :   alucont <= 3'bxxx;
             endcase
+        default: 
+            alucont <= aluop;
     endcase
 end 
 endmodule
