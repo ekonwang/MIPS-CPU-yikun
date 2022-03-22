@@ -24,21 +24,12 @@ assign {regwrite, regdst, alusrc, branch, memwrite,
 //end
 always_comb begin
     unique case(op)
-<<<<<<< HEAD
-        `RTYPE  :   controls <= 9'b110000010;
-        `LW     :   controls <= 9'b101001000;
-        `SW     :   controls <= 9'b001010000; 
-        `BEQ    :   controls <= 9'b000100000;
-        `ADDI   :   controls <= 9'b101000000;
-        `J      :   controls <= 9'b000000100;
-=======
         `RTYPE  :   controls <= {6'b1100000, `ALU_NO_USE};
         `LW     :   controls <= {6'b1010010, `ALU_ADD};
         `SW     :   controls <= {6'b0010100, `ALU_ADD}; 
         `BEQ    :   controls <= {6'b0001000, `ALU_ADD};
         `ADDI   :   controls <= {6'b1010000, `ALU_ADD};
         `J      :   controls <= {6'b0000001, `ALU_ADD};
->>>>>>> 57beae46c4741aa759e613a552f5c1964c4431d0
         default :   controls <= 9'bxxxxxxxxx;   
     endcase
 end
