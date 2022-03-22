@@ -16,8 +16,11 @@ module controller(
 );
 u2  aluop;
 u1  branch;
-
-maindec maindec(.op, .memtoreg, .memwrite, .regdst, .regwrite, .jump, .aluop);
+//always begin
+//    # 1; 
+//    $display("CONT INPUT -> @%0t op = %x, funct = %x", $time, op, funct);
+//end
+maindec maindec(.op, .memtoreg, .memwrite, .branch, .alusrc, .regdst, .regwrite, .jump, .aluop);
 aludec  aludec(.funct, .aluop, .alucont);
 
 assign pcsrc = branch & zero;

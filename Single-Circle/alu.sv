@@ -7,6 +7,10 @@ module aludec(
     input u2    aluop,
     output u3   alucont
 );
+//always begin
+//    # 2; 
+//    $display("ALUDEC INPUT -> @%0t op = %x, funct = %x", $time, op, funct);
+//end
 always_comb begin
     unique case(aluop)
         2'b00   :   alucont <= `ALU_ADD;  
@@ -29,12 +33,12 @@ module ALU #(
 ) (
     input logic [N-1:0]     A,
     input logic [N-1:0]     B,
-    input logic [2:0]       ALUcont,
+    input logic [2:0]       alucont,
     output logic [N-1:0]    result,
     output logic            zero    
 );
 always_comb begin
-    unique case(ALUcont)
+    unique case(alucont)
         `ALU_AND    : result = A & B; 
         `ALU_OR     : result = A | B; 
         `ALU_ADD    : result = A + B;

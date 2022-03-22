@@ -24,6 +24,14 @@ u1  zero;
 
 u3  alucont;
 
+always begin
+    # 2; 
+    $display("MIPS INPUT        -> @%0t clk = %x, reset = %x, instr = %x, readdata = %x", $time, clk, reset, instr, readdata);
+    $display("CONTROLLER OUTPUT -> @%0t memtoreg = %x, memwrite = %x, pcsrc = %x, alusrc = %x, regdst = %x, regwrite = %x, jump = %x, alucont = %x", 
+            $time, memtoreg, memwrite, pcsrc, alusrc, regdst, regwrite, jump, alucont);
+    $display("DATAPATH OUTPUT   -> @%0t aluout = %x, pc = %x, zero = %x, writedata = %x", $time, aluout, pc, zero, writedata);
+end
+
 controller controller(
     .op(instr[31:26]),
     .funct(instr[5:0]),

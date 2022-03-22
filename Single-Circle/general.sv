@@ -11,8 +11,8 @@ module flopr #(
     output logic[Width-1:0]     r
 );
 always @(posedge clk, posedge reset) begin
-    if (reset)  q <= 0;
-    else        q <= d;
+    if (reset)  r <= 0;
+    else        r <= d;
 end
 
 endmodule

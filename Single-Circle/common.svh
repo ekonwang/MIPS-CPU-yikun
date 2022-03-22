@@ -13,7 +13,7 @@
 `define ALU_SLT     3'b111
 
 // ALUDEC
-`define FUNCT_ADD   6'b101000
+`define FUNCT_ADD   6'b100000
 `define FUNCT_SUB   6'b100010
 `define FUNCT_AND   6'b100100 
 `define FUNCT_OR    6'b100101 
@@ -42,9 +42,9 @@ typedef logic           u1;
 // controller
 `define RTYPE   6'b000000
 `define LW      6'b100011
-`define SW      6'b000100
+`define SW      6'b101011
 `define BEQ     6'b000100
-`define ADDI    6'b000100
+`define ADDI    6'b001000
 `define J       6'b000010
 
 
