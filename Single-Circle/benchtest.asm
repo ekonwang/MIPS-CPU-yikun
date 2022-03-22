@@ -29,6 +29,6 @@ store:  sw   $2, 84($0)     # write mem[84] = 7     4c          ac020054
         andi $6, $5, 0xe    # $6 = 11 & 14 = 10     50          30a6000e          
         slti $2, $6, 9      # $2 = 10 < 9 = 0       54          28c20009
         beq  $2, $0, end    # should be taken       58          10400001
-        ori  $6, $0, 0xff   # shouldn't happen      5c          34c000ff
+        ori  $6, $0, 0xff   # shouldn't happen      5c          340600ff
 end:    ori  $2, $6, 0x14    # $2 = 20 | 10 = 30    60          34c20014
         sw   $2, 88($0)     # [88] = 9              64          ac020058
