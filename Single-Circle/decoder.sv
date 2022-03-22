@@ -28,7 +28,10 @@ always_comb begin
         `LW     :   controls <= {7'b1010010, `ALU_ADD};
         `SW     :   controls <= {7'b0010100, `ALU_ADD}; 
         `BEQ    :   controls <= {7'b0001000, `ALU_ADD};
-        `ADDI   :   controls <= {7'b1010000, `ALU_ADD};
+        `ADDI   :   controls <= {`IMM_CONT, `ALU_ADD};
+        `ORI    :   controls <= {`IMM_CONT, `ALU_OR};
+        `ANDI   :   controls <= {`IMM_CONT, `ALU_AND};
+        `SLTI   :   controls <= {`IMM_CONT, `ALU_SLT};
         `J      :   controls <= {7'b0000001, `ALU_ADD};
         default :   controls <= 9'bxxxxxxxxx;   
     endcase

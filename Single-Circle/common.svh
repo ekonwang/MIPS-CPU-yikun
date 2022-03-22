@@ -40,7 +40,8 @@ typedef logic[2:0]      u3;
 typedef logic[1:0]      u2;
 typedef logic           u1;
 
-// controller
+// maindec 
+// leftvalue
 `define RTYPE   6'b000000
 `define LW      6'b100011
 `define SW      6'b101011
@@ -50,6 +51,7 @@ typedef logic           u1;
 `define ANDI    6'b001100
 `define SLTI    6'b001010
 `define J       6'b000010
-
+// rightvalue
+`define IMM_CONT    7'b1010000  // for operations involving immediate values. (e.g. andi, addi, ori, slti)
 
 `endif
