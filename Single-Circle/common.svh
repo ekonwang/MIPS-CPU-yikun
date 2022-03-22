@@ -3,7 +3,7 @@
 
 `timescale 1ns/1ps
 
-// ALU 
+// @ALU 
 `define ALU_AND     3'b000
 `define ALU_OR      3'b001
 `define ALU_ADD     3'b010
@@ -46,6 +46,9 @@ typedef logic           u1;
 `define SW      6'b101011
 `define BEQ     6'b000100
 `define ADDI    6'b001000
+`define ORI     6'b001101
+`define ANDI    6'b001100
+`define SLTI    6'b001010
 `define J       6'b000010
 
 

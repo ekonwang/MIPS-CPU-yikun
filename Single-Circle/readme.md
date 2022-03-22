@@ -1,5 +1,19 @@
 
 
+新加入的指令包括 `ori`, `andi`, `slti`：
+
+- ORI
+
+<img src="https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/ori.png" style="zoom:70%;" />
+
+- ANDI
+
+<img src="https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/andi.png" style="zoom:70%;" />
+
+- SLTI
+
+<img src="https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/slti.png" style="zoom:70%;"/>
+
 更新后的 ALU 译码器真值表：
 
 | op                  | ALUcont              |
