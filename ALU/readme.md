@@ -12,7 +12,7 @@ ALU 是 arithmetic logic unit 的简称，是实现算术运算与位运算的�
 
 按照 MIPS 设计规范，ALU 应当实现以下 6 类整型操作。 
 
-![](https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/ALU mips.png)
+<img src="https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/ALU mips.png" style="zoom:50%;" />
 
 除此之外按照实验还应当实现的 2 类操作包括：
 
@@ -63,6 +63,7 @@ typedef logic           u1;
 
 - 便于 ALU 将来可以用于 64 位流水线 CPU 编写，我使用了 system verilog 提供的 parameter 机制，这样 ALU 模块就可以支持 32 位以外的其他位宽 。
 - parameter 的使用类似 C++ 中 Template 机制，同时作为变量的 parameter 是全局变量，可以承担类似宏的作用。[^2]
+- 在具体实现上，ALU 的核心被定义成了一个多路复用器，具体操作由 system verilog 提供的运算符支持，包括加、减、与、或以及比较运算。复用器采用了**unique case为核心的组合逻辑**，赋值采用阻塞赋值。
 
 ```verilog
 module ALU #(
