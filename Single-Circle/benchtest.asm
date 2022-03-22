@@ -3,7 +3,7 @@
 #
 # Test the MIPS processor.
 # add, sub, and, or, slt, addi, andi, ori, slti, lw, sw, beq, j, nop
-# xxx
+# If successful, cpu will store result 9 into data memory address 88.
 
 #       Assembly		    Description             Address     Machine
 main:   addi $2, $0, 5      # initialize $2 = 5     0           20020005
