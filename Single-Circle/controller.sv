@@ -15,8 +15,8 @@ module controller(
     output u3   alucont   
 );
 u3  aluop;
-u1  beq;
-u1  bne;
+u1  beq, exec_beq;
+u1  bne, exec_bne;
 //always begin
 //    # 1; 
 //    $display("CONT INPUT -> @%0t op = %x, funct = %x", $time, op, funct);
@@ -24,6 +24,8 @@ u1  bne;
 maindec maindec(.op, .memtoreg, .memwrite, .beq, .bne, .alusrc, .regdst, .regwrite, .jump, .aluop);
 aludec  aludec(.funct, .aluop, .alucont);
 
-assign pcsrc = beq & zero;
+assign exec_beq = beq & zero;
+assign exec_bne = bne & !zero;
+assign pcsrc = exec_beq | exec_bne;
 
 endmodule

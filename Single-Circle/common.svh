@@ -46,6 +46,7 @@ typedef logic           u1;
 `define LW      6'b100011
 `define SW      6'b101011
 `define BEQ     6'b000100
+`define BNE     6'b000101
 `define ADDI    6'b001000
 `define ORI     6'b001101
 `define ANDI    6'b001100
