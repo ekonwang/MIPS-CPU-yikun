@@ -6,16 +6,17 @@ module maindec(
     input u6    op,
     output u1   memtoreg,
     output u1   memwrite,
-    output u1   branch,
+    output u1   beq,
+    output u1   bne,
     output u1   alusrc,
     output u1   regdst,
     output u1   regwrite,
     output u1   jump,
     output u3   aluop
 );
-u10  controls;
+u11  controls;
 
-assign {regwrite, regdst, alusrc, branch, memwrite, 
+assign {regwrite, regdst, alusrc, beq, bne, memwrite, 
         memtoreg, jump, aluop} = controls;
 //always begin
 //    # 1; 
@@ -24,16 +25,16 @@ assign {regwrite, regdst, alusrc, branch, memwrite,
 //end
 always_comb begin
     unique case(op)
-        `RTYPE  :   controls <= {7'b1100000, `ALU_NO_USE};
-        `LW     :   controls <= {7'b1010010, `ALU_ADD};
-        `SW     :   controls <= {7'b0010100, `ALU_ADD}; 
-        `BEQ    :   controls <= {7'b0001000, `ALU_ADD};
+        `RTYPE  :   controls <= {8'b11000000, `ALU_NO_USE};
+        `LW     :   controls <= {8'b10100010, `ALU_ADD};
+        `SW     :   controls <= {8'b00100100, `ALU_ADD}; 
+        `BEQ    :   controls <= {8'b00010000, `ALU_ADD};
         `ADDI   :   controls <= {`IMM_CONT, `ALU_ADD};
         `ORI    :   controls <= {`IMM_CONT, `ALU_OR};
         `ANDI   :   controls <= {`IMM_CONT, `ALU_AND};
         `SLTI   :   controls <= {`IMM_CONT, `ALU_SLT};
-        `J      :   controls <= {7'b0000001, `ALU_ADD};
-        default :   controls <= 9'bxxxxxxxxx;   
+        `J      :   controls <= {8'b00000001, `ALU_ADD};
+        default :   controls <= 11'bxxxxxxxxxxx;   
     endcase
 end
 

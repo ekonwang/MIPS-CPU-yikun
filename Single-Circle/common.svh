@@ -52,6 +52,6 @@ typedef logic           u1;
 `define SLTI    6'b001010
 `define J       6'b000010
 // rightvalue
-`define IMM_CONT    7'b1010000  // for operations involving immediate values. (e.g. andi, addi, ori, slti)
+`define IMM_CONT    8'b10100000  // for operations involving immediate values. (e.g. andi, addi, ori, slti)
 
 `endif

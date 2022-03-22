@@ -15,12 +15,13 @@ module controller(
     output u3   alucont   
 );
 u3  aluop;
-u1  branch;
+u1  beq;
+u1  bne;
 //always begin
 //    # 1; 
 //    $display("CONT INPUT -> @%0t op = %x, funct = %x", $time, op, funct);
 //end
-maindec maindec(.op, .memtoreg, .memwrite, .branch, .alusrc, .regdst, .regwrite, .jump, .aluop);
+maindec maindec(.op, .memtoreg, .memwrite, .beq, .bne, .alusrc, .regdst, .regwrite, .jump, .aluop);
 aludec  aludec(.funct, .aluop, .alucont);
 
 assign pcsrc = branch & zero;
