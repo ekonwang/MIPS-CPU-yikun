@@ -13,9 +13,9 @@ initial begin
     reset <= 1; #2; reset <= 0;
 end
 
-//always begin
-//    #35; $stop;
-//end
+always begin
+    #195; $stop;
+end
 
 always begin
     clk <= 1; #5; clk <= 0; #5;
