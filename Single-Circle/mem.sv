@@ -25,7 +25,7 @@ module imem(
 u32     data[63:0];
 
 initial begin
-    $readmemh("memfile.dat", data);
+    $readmemh("smemfile.dat", data);
 end
 assign readdata = data[addr];
 endmodule

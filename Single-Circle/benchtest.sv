@@ -13,9 +13,9 @@ initial begin
     reset <= 1; #2; reset <= 0;
 end
 
-always begin
-    #195; $stop;
-end
+//always begin
+//    #195; $stop;
+//end
 
 always begin
     clk <= 1; #5; clk <= 0; #5;
@@ -23,10 +23,10 @@ end
 
 always @(negedge clk) begin
     if (memwrite) begin 
-        if (dataaddr === 84 & writedata === 7) begin 
+        if (dataaddr === 88 & writedata === 30) begin 
             $display("Simulation succedded");
             $stop;
-        end else if (dataaddr !== 80) begin 
+        end else if (dataaddr !== 80 && dataaddr !== 84) begin 
             $display("Simulation failed");
             $stop;
         end
