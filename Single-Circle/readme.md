@@ -39,7 +39,7 @@
 # add, sub, and, or, slt, addi, andi, ori, slti, lw, sw, beq, j, nop
 # If successful, cpu will store result 9 into data memory address 88.
 
-#       Assembly		    		Description             Address     Machine
+#       Assembly		    Description             Address     Machine
 main:   addi $2, $0, 5      # initialize $2 = 5     0           20020005
         ori  $3, $0, 12     # initialize $3 = 12    4           3403000c
         addi $7, $3, -9     # initialize $7 = 3     8           2067fff7
@@ -61,8 +61,8 @@ around: slt  $4, $7, $2     # $4 = 3 < 5 = 1        2c          00e2202a
         addi $2, $0, 1      # shouldn't happen      48          20020001
 store:  sw   $2, 84($0)     # write mem[84] = 7     4c          ac020054
         andi $6, $5, 0xe    # $6 = 11 & 14 = 10     50          30a6000e          
-        slti $2, $6, 9      # $2 = 10 < 9 = 0       54          28c2000b
-        beq  $2, $0, end    # should be taken       58          14400001
+        slti $2, $6, 0xb    # $2 = 10 < 11 = 1      54          28c20009
+        bne  $2, $0, end    # should be taken       58          14400001
         ori  $6, $0, 0xff   # shouldn't happen      5c          340600ff
 end:    ori  $2, $6, 0x14    # $2 = 20 | 10 = 30    60          34c20014
         sw   $2, 88($0)     # [88] = 9              64          ac020058
