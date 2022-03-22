@@ -34,6 +34,12 @@ assign pcbranch     =   pcplus4 + signimmsh;
 assign pcnextbr     =   pcsrc ? pcbranch : pcplus4;
 assign pcnext       =   jump ? {pcplus4[31:28], instr[25:0], 2'b00} : pcnextbr;
 
+// always begin
+//     # 2; 
+//     $display("REG INPUT   -> @%0t clk = %x, regwrite = %x, ra1 = %x, ra2 = %x, wa3 = %x, write_content = %x", $time, clk, regwrite, instr[25:21], instr[20:16], writereg, result);
+//     $display("ALU INPUT   -> @%0t A = %x, B = %x, alucont = %x", $time, srca, srcb, alucont);
+// end
+
 // register file logic
 regfile regfile(.clk, .we3(regwrite), 
                 .ra1(instr[25:21]), .ra2(instr[20:16]), .wa3(writereg), 

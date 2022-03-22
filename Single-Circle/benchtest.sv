@@ -14,7 +14,7 @@ initial begin
 end
 
 //always begin
-//    #25; $stop;
+//    #35; $stop;
 //end
 
 always begin
