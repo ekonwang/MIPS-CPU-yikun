@@ -24,6 +24,6 @@ u1  bne;
 maindec maindec(.op, .memtoreg, .memwrite, .beq, .bne, .alusrc, .regdst, .regwrite, .jump, .aluop);
 aludec  aludec(.funct, .aluop, .alucont);
 
-assign pcsrc = branch & zero;
+assign pcsrc = beq & zero;
 
 endmodule
