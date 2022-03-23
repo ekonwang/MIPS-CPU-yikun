@@ -1,18 +1,14 @@
 
 
-新加入的指令包括 `ori`, `andi`, `slti`：
+新加入的指令包括 `ori`,  `andi`,  `slti`, `bne`：
 
-- ORI
+|                             ORI                              |                             ANDI                             |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+| ![](https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/andi.png) | ![](https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/andi.png) |
+|                           **SLTI**                           |                           **BNE**                            |
+| ![](https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/slti.png) | <img src="https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/bne-mips.png" style="zoom:33%;" /> |
 
-<img src="https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/ori.png" style="zoom:70%;" />
 
-- ANDI
-
-<img src="https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/andi.png" style="zoom:70%;" />
-
-- SLTI
-
-<img src="https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/slti.png" style="zoom:70%;"/>
 
 更新后的 ALU 译码器真值表：
 
@@ -68,3 +64,4 @@ end:    ori  $2, $6, 0x14    # $2 = 20 | 10 = 30    60          34c20014
         sw   $2, 88($0)     # [88] = 9              64          ac020058
 ```
 
+#### 仿真结果
