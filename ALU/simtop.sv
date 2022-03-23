@@ -17,6 +17,8 @@ ALU ALU(.A, .B, .ALUcont, .result, .zero);
 //$result = 15 - 4 = 11
 //$result = 11 slt 12 = 1
 //$result = 11 slt 11 = 0
+//$result = 11 + 33 = 44
+//$result = 44 - 22 = 22
  
 always begin
     #10 A = 32'd2; B = 32'd7; ALUcont = `ALU_AND; 
@@ -27,6 +29,8 @@ always begin
     #10 A = result; B = 32'd4; ALUcont = `ALU_SUB;
     #10 A = result; B = 12; ALUcont = `ALU_SLT;
     #10 B = 11; ALUcont = `ALU_SLT;
+    #10 B = 33; ALUcont = `ALU_ADD;
+    #10 A = result; B = 22; ALUcont = `ALU_SUB;
     #10 $stop;
 end
  // #10 $display("@%0t: A = %d, B = %d, ALUcont = %d, result = %d, zero = %d", $time, A, B, ALUcont, result, zero);
@@ -55,6 +59,12 @@ always begin
             $display("@%0t simulation failed", $time);
         end
     #10 if (result !== 0) begin
+            $display("@%0t simulation failed", $time);
+        end
+    #10 if (result !== 44) begin
+            $display("@%0t simulation failed", $time);
+        end
+    #10 if (result !== 22) begin
             $display("@%0t simulation failed", $time);
         end
     $display("@%0t simulation passed", $time);
