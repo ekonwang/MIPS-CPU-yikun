@@ -1,3 +1,10 @@
+// # simtop
+// # wangyikun19@fudan.edu.cn 23 March 2022
+// #
+// # Test the MIPS processor ALU.
+// # add, sub, and, or, slt
+// # If successful, monitor output "simulation passed".
+
 `timescale 1ns/1ps
 
 `include "common.svh"
