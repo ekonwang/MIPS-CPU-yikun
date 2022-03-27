@@ -209,18 +209,6 @@ endmodule
 | **变量表**                                                   | **TCL 终端输出**                                             |
 | ![](https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/alu变量表.pic.jpg) | ![](https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/alu测试显示器输出.pic.jpg) |
 
-
-
-#### 上板测试
-
-1. ##### 编写约束文件
-
-
-
-2. ##### 实际测试效果
-
-
-
 #### Reference
 
 [^1]: 维基百科：ALU https://en.wikipedia.org/wiki/Arithmetic_logic_unit
