@@ -45,7 +45,6 @@
 - 在原来 benchtest 的基础上，增加了对于 `andi`,  `ori` 以及 `slti` 的测试。测试保证各种指令出现的次数不少于1次，且保证指令流的强上下文依赖性。
 - 同时为了保证 nop 指令的正确性，在不扰乱汇编码正常执行（即不干扰 jump 或者 branch 指令正确跳转），随机地选取了 2 处位置插入了 nop 指令 (32'b 0x00000000)。
 - 除了新插入的两处 nop 指令，新的基准测试在原先基础上在结尾添加了 6 条指令，分别测试 `andi`, `slti`, `beq`, （第四条指令应当不执行），`ori`， `sw`。此外将原本第二条指令处的 `addi $3, $0, 12 `  替换成 `ori $3, $0, 12 ` ，此处的替换执行效果等价。
-- 在 `84` dmem 位置写入 7 表示原测试通过，`88` dmem 位置写入 9 表示新 benchtest 通过。
 - 这里是 benchtest 的汇编版本，实际测试需要将每条测试指令机器码写入测试文件 `smemfile.dat`，在 vivado 仿真中需要从 .dat 文件中读出指令并执行。
 
 ```assembly
@@ -170,6 +169,8 @@ typedef logic           u1;
 
 其中 datapath 主要包括 ALU 模块，寄存器模块，PC 更新逻辑。而 controller 主要包含 ALU decoder （负责 ALU 译码） 以及 main decoder （负责总体译码）模块。
 
+笔者想着重强调 datapath 部分的设计：
+
 在 ALU 的实现中，为了保持 ALU 部件代码的可重用性与可拓展性，我做了如下设计：
 
 - 便于 ALU 将来可以用于 64 位流水线 CPU 编写，我使用了 system verilog 提供的 parameter 机制，这样 ALU 模块就可以支持 32 位以外的其他位宽 。
@@ -204,9 +205,57 @@ assign zero = !result;
 endmodule
 ```
 
+在 pc 更新方面，笔者使用了一个基于 parameter 机制实现的 `flopr` ，实现在时钟 clk 信号上升沿更新 PC。
+
+代码本质是 `if-else` 式的级联，实现了在一般情况下的 PC 更新 (nextPC = PC + 4)，分支条件以及跳转情况下的更新。
+
+```verilog
+// next PC
+flopr #(32) pcreg(clk, reset, pcnext, pc);
+assign pcplus4      =   pc + 32'd4;
+assign signimmsh    =   {signimm[29:0], 2'b00};
+assign pcbranch     =   pcplus4 + signimmsh;
+assign pcnextbr     =   pcsrc ? pcbranch : pcplus4;
+assign pcnext       =   jump ? {pcplus4[31:28], instr[25:0], 2'b00} : pcnextbr;
+```
+
+##### 3. IO
+
+为了更好的上板，在 IO 部分笔者尝试编写了一个小型驱动，方便之后上板适用。
+
+代码包括一个约束文件以及两个模块 `map` （负责 dmem 的读入与总体 IO）以及 `mux7seg` （负责输出信号到 7 段数码管的映射）。
+
+<img src="https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/截屏2022-04-24 下午12.45.27.png" style="zoom:50%;" />
+
+最终的 module hierarchy 如下图所示：
+
+- 其中 top 模块包含两个组件：mips (MIPS 单周期处理器) 以及 memory（指令 & 数据储存单元）
+- top 模块再上层是 benchtest 模块，模拟 clk，reset 信号，实例化一个 top 模块，并且描述了测试通过与否的判断逻辑。
+
+<figure>
+  <center>
+  <img src="https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/屏幕截图 2022-04-24 121837.png" style="zoom:60%;" />
+    <figcaption>module hierarchy</figcaption>
+  </center>
+</figure>
+
 #### 仿真结果
 
+在 `84` dmem 位置写入 7 表示原测试通过，`88` dmem 位置写入 9 表示新 benchtest 通过。
 
+<figure>
+  <center>
+  <img src="https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/屏幕截图 2022-04-24 121416.png" style="zoom:60%;" />
+    <figcaption>仿真终止</figcaption>
+  </center>
+</figure>
+
+<figure>
+  <center>
+  <img src="https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/屏幕截图 2022-04-24 121431.png" style="zoom:60%;" />
+    <figcaption>TCL 终端输出</figcaption>
+  </center>
+</figure>
 
 #### Reference 
 
