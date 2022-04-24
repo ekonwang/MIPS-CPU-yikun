@@ -5,7 +5,7 @@
 # add, sub, and, or, slt, addi, andi, ori, slti, lw, sw, beq, j, nop
 # If successful, cpu will store result 9 into data memory address 88.
 
-#       Assembly		    Description             Address     Machine
+#       Assembly            Description             Address     Machine
 main:   addi $2, $0, 5      # initialize $2 = 5     0           20020005
         ori  $3, $0, 12     # initialize $3 = 12    4           3403000c
         addi $7, $3, -9     # initialize $7 = 3     8           2067fff7
