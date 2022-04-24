@@ -201,8 +201,6 @@ endmodule
 
 将设计文件 `alu.sv`, `common.svh` 
 
-
-
 | 宏观波形                                                     | 微观波形                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ![](https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/alu测试波形宏观.pic.jpg) | ![](https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/alu测试波形微观.pic.jpg) |
