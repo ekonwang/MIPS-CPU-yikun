@@ -53,6 +53,7 @@ module aludec(
                     FUNCT_SLT:  alucont <= ALU_SLT;
                     FUNCT_SUB:  alucont <= ALU_SUB;
                 endcase
+            default: alucont <= 'x;
         endcase
     end 
 endmodule
@@ -89,6 +90,7 @@ module maindec(
                     BEQ:        nextstate = BEQEX;
                     ADDI:       nextstate = ADDIEX;
                     J:          nextstate = JEX;
+                    BUBBLE:     nextstate = FETCH;
                     default:    nextstate = 4'bx;
             endcase
             MEMADR: case(op)
@@ -125,6 +127,12 @@ module maindec(
             JEX:        controls = JEX_C;
             default:    controls = 15'hxxxx;
         endcase
+    end
+
+    always begin 
+        #6;
+        $display("[maindec]    state=%x nextstate=%x\n", state, nextstate);
+        #4;
     end
 
 endmodule
