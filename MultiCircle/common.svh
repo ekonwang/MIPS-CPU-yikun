@@ -3,6 +3,9 @@
 
 `timescale 1ns/1ps
 
+// @PC_start
+parameter PC_start      =       32'h100
+
 // @ALU 
 parameter ALU_AND       =       3'b000
 parameter ALU_OR        =       3'b001
@@ -50,6 +53,7 @@ parameter SW        =       6'b101011
 parameter BEQ       =       6'b000100
 parameter ADDI      =       6'b001000
 parameter J         =       6'b000010
+parameter BUBBLE    =       6'b000000
 // parameter BNE       =       6'b000101
 // parameter ORI       =       6'b001101
 // parameter ANDI      =       6'b001100
