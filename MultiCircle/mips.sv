@@ -29,7 +29,28 @@ module mips(
     );
 
     datapath datapath(
-        
+        .clk, .reset,
+        .instr,
+        .readdata,
+
+        .pcen, .regwrite,
+        .alusrca, .memtoreg, .regdst,
+        .alusrcb, .pcsrc,
+        .alucont,
+
+        .zero,
+        .pc, .aluout, .writedata
     );
+
+    always begin 
+        #7;
+        $display("[controller] instr=%x pcen=%x, memwrite=%x irwrite=%x regwrite=%x", instr, pcen, memwrite, irwrite, regwrite);
+        $display("             alusrca=%x iord=%x memtoreg=%x regdst=%x", alusrca, iord, memtoreg, regdst);
+        $display("             alusrcb=%x pcsrc=%x alucont=%x\n", alusrcb, pcsrc, alucont);
+
+        $display("[datapath]   readdata=%x",readdata);
+        $display("             zero=%x, pc=%x, aluout=%x, writedata=%x\n", zero, pc, aluout, writedata);
+        #3;
+    end
 
 endmodule
