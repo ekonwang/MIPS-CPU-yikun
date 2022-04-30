@@ -7,10 +7,10 @@ module datapath(
     input u32   instr,
     input u32   readdata,
 
-    output u1   pcen, memwrite, irwrite, regwrite,
-    output u1   alusrca, iord, memtoreg, regdst,
-    output u2   alusrcb, pcsrc,
-    output u3   alucont,
+    input u1   pcen, regwrite,
+    input u1   alusrca, memtoreg, regdst,
+    input u2   alusrcb, pcsrc,
+    input u3   alucont,
 
     output u1   zero,
     output u32  pc, aluout, writedata
@@ -22,13 +22,33 @@ module datapath(
     u32 srca, srcb;
     u32 aluresult, aluout;
 
+    always begin 
+        #5;
+        $display("[pc]       pcsrc=%x   aluout=%x   aluresult=%x   signimmsh=%x   pcnext=%x\n", pcsrc, aluout, aluresult, signimmsh, pcnext);
+
+        $display("[regfile]  regwrite=%x   ra1=%x   ra2=%x   wa3=%x", regwrite, instr[25:21], instr[20:16], writereg);
+        $display("           wd3=%x   rd1=%x   rd2=%x\n", writeregdata, rd1, rd2);
+
+        $display("[alu]      srca=%x   srcb=%x   aluout=%x", srca, srcb, aluout);
+        $display("           alucont=%x   aluout=%x\n", alucont, aluout);
+        #5;
+    end
+
     // next pc
     always_ff @(posedge clk or posedge reset) begin
-        if (reset)  pc <= 0;
+        if (reset)  pc <= PC_start;
         else if(pcen)   pc <= pcnext; 
     end
-    // pc logic
-    assign pcnext = pcsrc ? aluout : aluresult;
+    // next pc logic
+    always_comb begin
+        unique case(pcsrc)
+            2'b00:  pcnext = aluout;
+            2'b01:  pcnext = aluresult;
+            2'b10:  pcnext = {pc[31:28], signimmsh[27:0]}
+            default: 
+                pcnext = 'x
+        endcase
+    end
 
 
     // register file logic
