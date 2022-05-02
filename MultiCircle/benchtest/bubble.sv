@@ -11,7 +11,7 @@ module testbench();
     cpu top(.clk, .reset, .writedata, .dataaddr, .memwrite, .pc);
 
     integer cycle = 10;
-    integer sim_t = cycle * 2 + cycle / 2;
+    integer sim_t = cycle * 6 + cycle / 2;
     integer cnt = 0;
 
     // init clock signal
@@ -30,11 +30,11 @@ module testbench();
     // bubble
     always begin
         #sim_t; 
-        if (pc != PC_start + 4*(sim_t/cycle/2)) begin
-            $display("Simulation failed");
+        if (pc == PC_start + 4*(sim_t/cycle/2)) begin
+            $display("Simulation succedded");
             $stop;
         end else begin
-            $display("Simulation succedded");
+            $display("Simulation failed");
             $stop;
         end
     end

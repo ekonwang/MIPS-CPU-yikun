@@ -20,7 +20,7 @@ module cpu(
                 .pc, 
                 .aluout(dataaddr), .writedata);
 
-    mem mem(.clk, .memwrite, .writedata, .pc, .dataaddr, .iord, .irwrite,
+    mem mem(.clk, .we(memwrite), .writedata, .pc, .dataaddr, .iord, .irwrite,
                 .instr, .readdata);
 
     always begin 

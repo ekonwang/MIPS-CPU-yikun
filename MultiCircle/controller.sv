@@ -26,7 +26,7 @@ module controller(
 
     maindec maindec(
         .clk, .reset,
-        .op,
+        .op, .funct,
 
         .pcwrite, .memwrite, .irwrite, .regwrite,
         .alusrca, .branch, .iord, .memtoreg, .regdst,
@@ -61,7 +61,7 @@ endmodule
 
 module maindec(
     input u1    clk, reset,
-    input u6    op,
+    input u6    op, funct,
     
     output u1   pcwrite, memwrite, irwrite, regwrite,
     output u1   alusrca, branch, iord, memtoreg, regdst,
@@ -86,11 +86,15 @@ module maindec(
             DECODE: case(op)
                     LW:         nextstate = MEMADR;
                     SW:         nextstate = MEMADR;
-                    RTYPE:      nextstate = RTYPEEX;
                     BEQ:        nextstate = BEQEX;
                     ADDI:       nextstate = ADDIEX;
                     J:          nextstate = JEX;
-                    BUBBLE:     nextstate = FETCH;
+                    // RTYPE:      nextstate = RTYPEEX;
+                    RTYPE: case(funct)
+                        BUBBLE:     nextstate = FETCH;
+                        default:    nextstate = RTYPEEX;
+                    endcase
+                    // BUBBLE:     nextstate = FETCH;
                     default:    nextstate = 4'bx;
             endcase
             MEMADR: case(op)
@@ -131,7 +135,7 @@ module maindec(
 
     always begin 
         #6;
-        $display("[maindec]    state=%x nextstate=%x\n", state, nextstate);
+        $display("[maindec]    state=%x   nextstate=%x    op=%x   funct=%x\n", state, nextstate, op, funct);
         #4;
     end
 

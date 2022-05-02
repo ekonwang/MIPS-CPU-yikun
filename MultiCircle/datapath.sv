@@ -24,12 +24,12 @@ module datapath(
 
     always begin 
         #5;
-        $display("[pc]       pcsrc=%x   aluout=%x   aluresult=%x   signimmsh=%x   pcnext=%x\n", pcsrc, aluout, aluresult, signimmsh, pcnext);
+        $display("[pc]       pcsrc=%x   aluout=%x   aluresult=%x   signimmsh=%x    pcnext=%x    pc=%x\n", pcsrc, aluout, aluresult, signimmsh, pcnext, pc);
 
         $display("[regfile]  regwrite=%x   ra1=%x   ra2=%x   wa3=%x", regwrite, instr[25:21], instr[20:16], writereg);
         $display("           wd3=%x   rd1=%x   rd2=%x\n", writeregdata, rd1, rd2);
 
-        $display("[alu]      srca=%x   srcb=%x   aluout=%x", srca, srcb, aluout);
+        $display("[alu]      srca=%x   srcb=%x   aluout=%x    alusrcb=%x", srca, srcb, aluout, alusrcb);
         $display("           alucont=%x   aluout=%x\n", alucont, aluout);
         #5;
     end
@@ -42,8 +42,8 @@ module datapath(
     // next pc logic
     always_comb begin
         unique case(pcsrc)
-            2'b00:  pcnext = aluout;
-            2'b01:  pcnext = aluresult;
+            2'b00:  pcnext = aluresult;
+            2'b01:  pcnext = aluout;
             2'b10:  pcnext = {pc[31:28], signimmsh[27:0]};
             default: 
                 pcnext = 'x;
