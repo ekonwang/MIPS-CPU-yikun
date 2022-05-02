@@ -23,15 +23,15 @@ module datapath(
     u32 aluresult;
 
     always begin 
-        #5;
+        #4;
         $display("[pc]       pcsrc=%x   aluout=%x   aluresult=%x   signimmsh=%x    pcnext=%x    pc=%x\n", pcsrc, aluout, aluresult, signimmsh, pcnext, pc);
 
         $display("[regfile]  regwrite=%x   ra1=%x   ra2=%x   wa3=%x", regwrite, instr[25:21], instr[20:16], writereg);
-        $display("           wd3=%x   rd1=%x   rd2=%x\n", writeregdata, rd1, rd2);
+        $display("           wd3=%x   rd1=%x   rd2=%x    writeregdata=%x\n", writeregdata, rd1, rd2, writeregdata);
 
         $display("[alu]      srca=%x   srcb=%x   aluout=%x    alusrcb=%x", srca, srcb, aluout, alusrcb);
         $display("           alucont=%x   aluout=%x\n", alucont, aluout);
-        #5;
+        #6;
     end
 
     // next pc

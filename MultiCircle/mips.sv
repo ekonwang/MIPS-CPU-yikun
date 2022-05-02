@@ -19,7 +19,7 @@ module mips(
 
     controller controller(
         .clk, .reset,
-        .op(instr[31:25]), .funct(instr[5:0]),
+        .op(instr[31:26]), .funct(instr[5:0]),
         .zero,
 
         .pcen, .memwrite, .irwrite, .regwrite,

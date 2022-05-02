@@ -30,4 +30,10 @@ module cpu(
         #2;
     end
 
+    always begin 
+        #5;
+        $display("[cpu]    writedata=%x    dataaddr=%x\n", writedata, dataaddr);
+        #5;
+    end
+
 endmodule
