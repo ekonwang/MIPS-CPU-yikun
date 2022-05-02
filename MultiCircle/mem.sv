@@ -14,7 +14,7 @@ module mem(
     output u32      readdata
 );
     u32     data[127:0]; // 512 KB total storage
-    u32     read_data, read_instr, read;
+    u32     read_data, read_instr, read, addr;
 
     assign read = data[addr[31:2]];  // addr must be 4-byte aligned
     always @(posedge clk) begin
@@ -24,6 +24,11 @@ module mem(
     always_comb begin
         if (iord) read_data = read;
         else read_instr = read;
+    end
+
+    always_comb begin
+        if (iord) addr = dataaddr;
+        else addr = pc;
     end
 
     always @(posedge clk) begin 
