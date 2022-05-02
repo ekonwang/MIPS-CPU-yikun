@@ -12,7 +12,7 @@ module controller(
     output u2   alusrcb, pcsrc,
     output u3   alucont
 );
-    u1  pcwrite, branch, pcen;
+    u1  pcwrite, branch;
     u2  aluop;
 
     assign pcen = (branch & zero) | pcwrite;
