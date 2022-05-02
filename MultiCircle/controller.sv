@@ -15,7 +15,7 @@ module controller(
     u1  pcwrite, branch, pcen;
     u2  aluop;
 
-    pcen = (branch & zero) | pcwrite;
+    assign pcen = (branch & zero) | pcwrite;
 
     aludec aludec(
         .funct,

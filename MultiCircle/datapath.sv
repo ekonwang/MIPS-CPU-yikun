@@ -44,9 +44,9 @@ module datapath(
         unique case(pcsrc)
             2'b00:  pcnext = aluout;
             2'b01:  pcnext = aluresult;
-            2'b10:  pcnext = {pc[31:28], signimmsh[27:0]}
+            2'b10:  pcnext = {pc[31:28], signimmsh[27:0]};
             default: 
-                pcnext = 'x
+                pcnext = 'x;
         endcase
     end
 

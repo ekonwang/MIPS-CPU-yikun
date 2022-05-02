@@ -9,7 +9,7 @@ module cpu(
     output u32  writedata, 
     output u32  dataaddr,
     output u32  pc,
-    output u1   memwrite,
+    output u1   memwrite
 );
     u32     instr, readdata;
     u1      iord, memwrite, irwrite;

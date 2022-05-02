@@ -16,7 +16,7 @@ module mem(
     u32     data[127:0]; // 512 KB total storage
     u32     read_data, read_instr, read;
 
-    read = data[addr[31:2]];  // addr must be 4-byte aligned
+    assign read = data[addr[31:2]];  // addr must be 4-byte aligned
     always @(posedge clk) begin
         if (we) data[addr[31:2]] <= writedata;
     end
