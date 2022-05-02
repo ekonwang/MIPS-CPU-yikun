@@ -20,7 +20,7 @@ module datapath(
     u32 writeregdata, rd1, rd2, readreg1, readreg2;
     u32 signimm, signimmsh;
     u32 srca, srcb;
-    u32 aluresult, aluout;
+    u32 aluresult;
 
     always begin 
         #5;
