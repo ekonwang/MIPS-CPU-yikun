@@ -12,7 +12,7 @@ module mips(
     output u32  aluout, writedata
 );
     u1  zero;
-    u1  pcen, irwrite, regwrite;
+    u1  pcen, regwrite;
     u1  alusrca, memtoreg, regdst;
     u2  alusrcb, pcsrc;         // note that `pcsrc` is 2-bit-width.
     u3  alucont;
