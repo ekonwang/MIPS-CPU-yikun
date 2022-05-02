@@ -12,7 +12,7 @@ module cpu(
     output u1   memwrite
 );
     u32     instr, readdata;
-    u1      iord, memwrite, irwrite;
+    u1      iord, irwrite;
     u32     wirtedata;
 
     mips mips(.clk, .reset, .instr, .readdata, 
