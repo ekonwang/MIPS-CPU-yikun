@@ -20,22 +20,22 @@ module testbench();
         #1;
         reset <= 0;
     end
-    // init clock signal
+    
     // imm takes 
-    // $2 = 1, $3 = 2, $4 = $2 + $3 = 3
     always begin
         clk <= 1; #(cycle/2); clk <= 0; #(cycle/2);
     end
 
+    // $2 = 1 + $0
     always begin
         #sim_t; 
-        if (pc != PC_start + 4*3) begin
+        if (pc != PC_start + (sim_t/ cycle)) begin
             $display("Simulation failed");
             $stop;
-        end else if (writedata != 3) begin
+        end else if (writedata != 1) begin
             $display("Simulation failed");
             $stop;
-        end else if (dataaddr != 3) begin
+        end else if (dataaddr != 1) begin
             $display("Simulation failed");
             $stop;
         end else begin

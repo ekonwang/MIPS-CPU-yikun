@@ -15,6 +15,13 @@ module testbench();
     integer cnt = 0;
 
     // init clock signal
+    initial begin
+        reset <= 1;
+        #1;
+        reset <= 0;
+    end
+
+    // init clock signal
     // $2 = 5 (4 circles)
     // $6 = 6 (4 circles)
     // beq $2 $3 (3 circles, should not taken)

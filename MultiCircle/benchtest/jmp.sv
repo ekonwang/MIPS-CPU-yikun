@@ -15,6 +15,12 @@ module testbench();
     integer cnt = 0;
 
     // init clock signal
+    initial begin
+        reset <= 1;
+        #1;
+        reset <= 0;
+    end
+    // init clock signal
     // $2 = 5 (4 circles)
     // $3 = 6 (4 circles)
     // jump to 5th instr (3 circles)

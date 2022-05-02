@@ -15,6 +15,12 @@ module testbench();
     integer cnt = 0;
 
     // init clock signal
+    initial begin
+        reset <= 1;
+        #1;
+        reset <= 0;
+    end
+    // init clock signal
     // imm takes 
     // $2 = 12
     // [80] = $2

@@ -14,6 +14,12 @@ module testbench();
     integer sim_t = cycle * 90 + cycle / 2;
     integer cnt = 0;
 
+    // init clock signal
+    initial begin
+        reset <= 1;
+        #1;
+        reset <= 0;
+    end
     // look into seq.asm for more information
     always begin
         clk <= 1; #(cycle/2); clk <= 0; #(cycle/2);
