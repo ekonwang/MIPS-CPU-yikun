@@ -37,7 +37,7 @@ module mem(
     end
 
     initial begin
-    $readmemh("imm.dat", data, PC_start/4);
+    $readmemh("seq.dat", data, PC_start/4);
     end
 
 endmodule

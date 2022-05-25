@@ -11,7 +11,7 @@ module testbench();
     cpu top(.clk, .reset, .writedata, .dataaddr, .memwrite, .pc);
 
     integer cycle = 10;
-    integer sim_t = cycle *  + cycle / 2;
+    integer sim_t = cycle * 26 + cycle / 2;
     integer cnt = 0;
 
     // init clock signal
@@ -28,20 +28,29 @@ module testbench();
     // $2 = $2 + 1 (4 circles, should execute)
     // beq $2 $3 (3 circles, should taken)
     // $2 = $2 + 1 (4 circles, should not excute)
-    // $4 = $2 (4 circles, expected to be 6)
+    // $4 = $2 + 6 (4 circles, expected to be 12 rather than 13)
     always begin
         clk <= 1; #(cycle/2); clk <= 0; #(cycle/2);
     end
 
     always begin
-        #sim_t; 
-        if (writedata != 6 or dataaddr != 6) begin
+        #1; 
+        if (dataaddr == 12)
+        begin
+            $display("Simulation succeeded");
+            $stop; 
+        end
+        if (dataaddr == 13)
+        begin 
             $display("Simulation failed");
             $stop;
-        end else begin
-            $display("Simulation succedded");
-            $stop;
         end
+    end
+
+    initial begin 
+        #(sim_t);
+        $display("Simulation time limit exceeded");
+        $stop;
     end
 
     always begin 

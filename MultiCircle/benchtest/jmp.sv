@@ -25,22 +25,29 @@ module testbench();
     // $3 = 6 (4 circles)
     // jump to 5th instr (3 circles)
     // $2 = $2 + $3 (4 circles)
-    // $4 = $2 + 1 (4 circles, expected 6)
+    // $4 = $2 + 5 (4 circles, expected 0xa / 10, wrong if 0xf / 16)
     always begin
         clk <= 1; #(cycle/2); clk <= 0; #(cycle/2);
     end
 
     always begin
-        #sim_t; 
-        if (writedata != 6 or dataaddr != 6) begin
-            $display("Simulation failed");
-            $stop;
-        end else begin
+        #1; 
+        if (dataaddr == 10) begin
             $display("Simulation succedded");
+            $stop;
+        end
+        if (dataaddr == 16) begin
+            $display("Simulation failed");
             $stop;
         end
     end
 
+    initial begin 
+        #(sim_t);
+        $display("Simulation time limit exceeded");
+        $stop;
+    end
+    
     always begin 
         $display("epoch %d", cnt/cycle);
         #9;
