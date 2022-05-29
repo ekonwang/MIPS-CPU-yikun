@@ -27,28 +27,27 @@ module testbench();
     end
 
     always begin
-        // #sim_t; 
-        if (memwrite and (dataaddr != 84 and dataaddr != 80 and dataaddr != 88)) begin
+        #1;
+        if (memwrite & (dataaddr != 84 & dataaddr != 80 & dataaddr != 88)) begin
             $display("Simulation failed");
             $stop;
-        end else if (memwrite and dataaddr == 80) begin
+        end else if (memwrite & dataaddr == 80) begin
             if (writedata == 7) begin
                 $display("Milestone hit");
             end else begin
                 $display("Simulation failed");
                 $stop;
             end
-        end
-        end else if (memwrite and dataaddr == 84) begin
+        end else if (memwrite & dataaddr == 84) begin
             if (writedata == 7) begin
                 $display("Milestone hit");
             end else begin
                 $display("Simulation failed");
                 $stop; 
             end
-        end else if (memwrite and dataaddr == 88) begin 
-            if (writedata == 9) begin
-                $display("Milestone hit");
+        end else if (memwrite & dataaddr == 88) begin 
+            if (writedata == 30) begin
+                $display("Succeeded");
                 $stop;
             end else begin
                 $display("Simulation failed");

@@ -27,6 +27,7 @@ parameter FUNCT_SLT     =       6'b101010;
 // types
 typedef logic[63:0]     u64;
 typedef logic[31:0]     u32;
+typedef logic[16:0]     u17;
 typedef logic[15:0]     u16;
 typedef logic[14:0]     u15;
 typedef logic[13:0]     u14;

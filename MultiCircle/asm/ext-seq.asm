@@ -23,12 +23,12 @@ around: slt  $4, $7, $2     # $4 = 3 < 5 = 1        2c          00e2202a
         sw   $7, 68($3)     # [80] = 7              38          ac670044
         lw   $2, 80($0)     # $2 = [80] = 7         3c          8c020050
         nop                 # no operation          40          00000000
-        j    store          # should be taken       44          08000013
+        j    store          # should be taken       44          08000051
         addi $2, $0, 1      # shouldn't happen      48          20020001
 store:  sw   $2, 84($0)     # write mem[84] = 7     4c          ac020054
         andi $6, $5, 0xe    # $6 = 11 & 14 = 10     50          30a6000e          
         slti $2, $6, 0xb    # $2 = 10 < 11 = 1      54          28c20009
         bne  $2, $0, end    # should be taken       58          14400001
         ori  $6, $0, 0xff   # shouldn't happen      5c          340600ff
-end:    ori  $2, $6, 0x14    # $2 = 20 | 10 = 30    60          34c20014
-        sw   $2, 88($0)     # [88] = 9              64          ac020058
+end:    ori  $2, $6, 0x14   # $2 = 20 | 10 = 30     60          34c20014
+        sw   $2, 88($0)     # [88] = 30             64          ac020058

@@ -12,10 +12,10 @@ module controller(
     output u2   alusrcb, pcsrc,
     output u3   alucont
 );
-    u1  pcwrite, branch;
+    u1  pcwrite, bne, beq;
     u3  aluop;
 
-    assign pcen = (branch & zero) | pcwrite;
+    assign pcen = (beq & zero) | (bne & !zero) | pcwrite;
 
     aludec aludec(
         .funct,
@@ -28,8 +28,9 @@ module controller(
         .clk, .reset,
         .op, .funct,
 
+        .bne,
         .pcwrite, .memwrite, .irwrite, .regwrite,
-        .alusrca, .branch, .iord, .memtoreg, .regdst,
+        .alusrca, .beq, .iord, .memtoreg, .regdst,
         .alusrcb, .pcsrc, .aluop
     );
 endmodule
@@ -67,7 +68,7 @@ module maindec(
     output u1   pcwrite, memwrite, irwrite, regwrite,
     output u1   alusrca, beq, iord, memtoreg, regdst,
     output u2   alusrcb, pcsrc, 
-    output u3   aluop,
+    output u3   aluop
 );
 
     u5  state, nextstate;
