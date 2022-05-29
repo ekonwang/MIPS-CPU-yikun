@@ -11,7 +11,7 @@ module testbench();
     cpu top(.clk, .reset, .writedata, .dataaddr, .memwrite, .pc);
 
     integer cycle = 10;
-    integer sim_t = cycle * 9 + cycle / 2;
+    integer sim_t = cycle * 8 + cycle / 2;
     integer cnt = 0;
 
     // init clock signal
@@ -29,20 +29,24 @@ module testbench();
     end
 
     always begin
-        #sim_t; 
-        if (memwrite != 1) begin
-            $display("Simulation failed");
-            $stop;
-        end else if (writedata != 12) begin
-            $display("Simulation failed");
-            $stop;
-        end else if (dataaddr != 80) begin
-            $display("Simulation failed");
-            $stop;
-        end else begin
-            $display("Simulation succedded");
-            $stop;
-        end
+        #1;
+        if (memwrite) begin
+            if (dataaddr == 80 & writedata == 12)
+                begin
+                    $display("Simulation succeeded");
+                    $stop;
+                end
+            else 
+                begin
+                    $display("Simulation failed");
+                    $stop;
+                end
+        end 
+    end
+
+    initial begin
+        #(sim_t);
+        $stop; 
     end
 
     always begin 

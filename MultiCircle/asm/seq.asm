@@ -23,6 +23,6 @@ around: slt  $4, $7, $2     # $4 = 3 < 5 = 1        2c          00e2202a
         sw   $7, 68($3)     # [80] = 7              38          ac670044
         lw   $2, 80($0)     # $2 = [80] = 7         3c          8c020050
         nop                 # no operation          40          00000000
-        j    store          # should be taken       44          08000013
+        j    store          # should be taken       44          08000011
         addi $2, $0, 1      # shouldn't happen      48          20020001
 store:  sw   $2, 84($0)     # write mem[84] = 7     4c          ac020054

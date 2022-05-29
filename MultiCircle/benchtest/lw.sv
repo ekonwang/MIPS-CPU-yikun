@@ -22,30 +22,33 @@ module testbench();
     end
     // init clock signal
     // imm takes 
-    // $3 = 12
-    // $2 = 1
-    // [80] = 1
-    // $4 = [80]
-    // $4 = $4 + $2 = 2
+    // $3 = 12 (4)
+    // $2 = 1 (4)
+    // [80] = 1 (4)
+    // $4 = [80] (5)
+    // $4 = $4 + $2 = 2 (4)
     always begin
         clk <= 1; #(cycle/2); clk <= 0; #(cycle/2);
     end
 
     always begin
-        #sim_t; 
-        if (memwrite != 0) begin
-            $display("Simulation failed");
-            $stop;
-        end else if (writedata != 1) begin
-            $display("Simulation failed");
-            $stop;
-        end else if (dataaddr != 2) begin
-            $display("Simulation failed");
-            $stop;
-        end else begin
-            $display("Simulation succedded");
+        #1; 
+        if (memwrite & dataaddr == 80 & writedata == 1) 
+        begin
+            $display("Milestone hit");
+        end
+
+        if (dataaddr == 2) 
+        begin 
+            $display("Simulation succeeded");
             $stop;
         end
+    end
+
+    initial begin 
+        #(sim_t);
+        $display("Simulation time limit exceeded");
+        $stop;
     end
 
     always begin 
