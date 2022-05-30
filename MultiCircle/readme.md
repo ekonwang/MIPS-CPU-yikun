@@ -365,11 +365,55 @@ ISA-extended 指在 11 种指令基础上，经过拓展的指令集。
 
  seq-ext.sv 最长，且包含所有 15 类指令，由于篇幅限制，只展示 seq-ext.sv 测试过程及结果：
 
+当最后处理器尝试在 0d88 处写入 value 30 时，即测试通过。
+
+```verilog
+always begin
+        #1;
+        if (memwrite & (dataaddr != 84 & dataaddr != 80 & dataaddr != 88)) begin
+            $display("Simulation failed");
+            $stop;
+        end else if (memwrite & dataaddr == 80) begin
+            if (writedata == 7) begin
+                $display("Milestone hit");
+            end else begin
+                $display("Simulation failed");
+                $stop;
+            end
+        end else if (memwrite & dataaddr == 84) begin
+            if (writedata == 7) begin
+                $display("Milestone hit");
+            end else begin
+                $display("Simulation failed");
+                $stop; 
+            end
+        end else if (memwrite & dataaddr == 88) begin 
+            if (writedata == 30) begin
+                $display("Succeeded");
+                $stop;
+            end else begin
+                $display("Simulation failed");
+                $stop; 
+            end
+        end
+    end
+```
+
 打开 vivado 项目，在 `cpu` 顶层模块之上增加 benchtest 模块（直接添加仿真文件 `seq-ext.sv`即可），将 mem 模块中读入的指令，改为 `ext-seq.dat`确保内存指令无误，点击运行 run simulation，开始仿真。
 
+终端输出：
 
+<img src="https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/suc1.png" style="zoom:60%;" />
 
+测试终止断点：
 
+<img src="https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/suc2.png" style="zoom:50%;" />
+
+波形输出：
+
+<img src="https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/suc3.png" style="zoom:50%;" />
+
+测试通过。
 
 ### 4.Contributor 
 
