@@ -23,17 +23,17 @@ module cpu(
     mem mem(.clk, .we(memwrite), .writedata, .pc, .dataaddr, .iord, .irwrite,
                 .instr, .readdata);
 
-    always begin 
-        #8;
-        $display("[mem]     memwrite=%x writedata=%x pc=%x dataaddr=%x iord=%x irwrite=%x", memwrite, writedata, pc, dataaddr, iord, irwrite);
-        $display("          instr=%x readdata=%x\n", instr, readdata);
-        #2;
-    end
+    // always begin 
+    //     #8;
+    //     $display("[mem]     memwrite=%x writedata=%x pc=%x dataaddr=%x iord=%x irwrite=%x", memwrite, writedata, pc, dataaddr, iord, irwrite);
+    //     $display("          instr=%x readdata=%x\n", instr, readdata);
+    //     #2;
+    // end
 
-    always begin 
-        #5;
-        $display("[cpu]    writedata=%x    dataaddr=%x\n", writedata, dataaddr);
-        #5;
-    end
+    // always begin 
+    //     #5;
+    //     $display("[cpu]    writedata=%x    dataaddr=%x\n", writedata, dataaddr);
+    //     #5;
+    // end
 
 endmodule

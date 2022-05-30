@@ -163,10 +163,10 @@ module maindec(
         endcase
     end
 
-    always begin 
-        #6;
-        $display("[maindec]    state=%x   nextstate=%x    op=%x   funct=%x\n", state, nextstate, op, funct);
-        #4;
-    end
+    // always begin 
+    //     #6;
+    //     $display("[maindec]    state=%x   nextstate=%x    op=%x   funct=%x\n", state, nextstate, op, funct);
+    //     #4;
+    // end
 
 endmodule

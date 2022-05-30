@@ -22,17 +22,17 @@ module datapath(
     u32 srca, srcb;
     u32 aluresult;
 
-    always begin 
-        #4;
-        $display("[pc]       pcsrc=%x   aluout=%x   aluresult=%x   signimmsh=%x    pcnext=%x    pc=%x    signimmsh=%x\n", pcsrc, aluout, aluresult, signimmsh, pcnext, pc, signimmsh);
+    // always begin 
+    //     #4;
+    //     $display("[pc]       pcsrc=%x   aluout=%x   aluresult=%x   signimmsh=%x    pcnext=%x    pc=%x    signimmsh=%x\n", pcsrc, aluout, aluresult, signimmsh, pcnext, pc, signimmsh);
 
-        $display("[regfile]  regwrite=%x   ra1=%x   ra2=%x   wa3=%x", regwrite, instr[25:21], instr[20:16], writereg);
-        $display("           wd3=%x   rd1=%x   rd2=%x    writeregdata=%x\n", writeregdata, rd1, rd2, writeregdata);
+    //     $display("[regfile]  regwrite=%x   ra1=%x   ra2=%x   wa3=%x", regwrite, instr[25:21], instr[20:16], writereg);
+    //     $display("           wd3=%x   rd1=%x   rd2=%x    writeregdata=%x\n", writeregdata, rd1, rd2, writeregdata);
 
-        $display("[alu]      srca=%x   srcb=%x   aluresult=%x    alusrcb=%x", srca, srcb, aluresult, alusrcb);
-        $display("           alucont=%x   aluout=%x\n", alucont, aluout);
-        #6;
-    end
+    //     $display("[alu]      srca=%x   srcb=%x   aluresult=%x    alusrcb=%x", srca, srcb, aluresult, alusrcb);
+    //     $display("           alucont=%x   aluout=%x\n", alucont, aluout);
+    //     #6;
+    // end
 
     // next pc
     always_ff @(posedge clk or posedge reset) begin

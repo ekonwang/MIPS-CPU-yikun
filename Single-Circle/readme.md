@@ -241,7 +241,7 @@ assign pcnext       =   jump ? {pcplus4[31:28], instr[25:0], 2'b00} : pcnextbr;
 
 #### 仿真结果
 
-在 `84` dmem 位置写入 7 表示原测试通过，`88` dmem 位置写入 9 表示新 benchtest 通过。
+在 `84` dmem 位置写入 7 表示原测试通过，`88` dmem 位置写入 30 表示新 benchtest 通过。
 
 <figure>
   <center>
