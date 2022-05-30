@@ -1,12 +1,10 @@
 `timescale 1ns/1ps
 
-`include "common.svh"
-
 module testbench();
-    u1      clk;
-    u1      reset;
-    u32     writedata, dataaddr, pc;
-    u1      memwrite;
+    logic      clk;
+    logic      reset;
+    logic [31:0]     writedata, dataaddr, pc;
+    logic      memwrite;
 
     cpu top(.clk, .reset, .writedata, .dataaddr, .memwrite, .pc);
 

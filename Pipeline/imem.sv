@@ -7,7 +7,7 @@ module imem (
 );
   logic [31:0] RAM[63:0];
   initial begin
-    $readmemh("seq.dat", RAM);
+    $readmemh("ext-seq.dat", RAM);
   end
   assign rd = RAM[a];  // word aligned
 endmodule : imem
