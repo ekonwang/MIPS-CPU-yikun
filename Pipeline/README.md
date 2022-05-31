@@ -1,5 +1,7 @@
 ## 流水线处理器实验报告
 
+*王艺坤 20CS*
+
 32 位流水线 MIPS 指令集 CPU，使用 SystemVerilog 编写。[^1]
 
 ### 1. 指令集架构
@@ -205,5 +207,28 @@ assign flush_d_o = pc_src_d_i || jump_d_i;
 
 和多周期处理器的测试一样，代码详见 `ext-seq.sv`，有关测试的更多细节在多周期报告中，这里无必要再赘述。
 
-测试结果：
+run simulation 测试结果：
 
+![](https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/pipeline-suc2.png)
+
+vivado 仿真波形：
+
+<img src="https://cdn.jsdelivr.net/gh/ekonwang/images@master/img/pipeline-suc1.png" style="zoom:60%;" />
+
+#### 3.2 测试环境
+
+- OS: windows11
+
+- vivado 2018.3
+
+### 4.Contributor 
+
+- [Ekon Wang](https://github.com/ekonwang) - Fudan University
+
+### 5. License
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](https://github.com/ekonwang/MIPS-CPU/blob/integrated/LICENSE) file for details.
+
+### 6. Reference
+
+[^1]: https://en.wikipedia.org/wiki/SystemVerilog
