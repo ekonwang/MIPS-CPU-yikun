@@ -3,12 +3,13 @@
 
 // Top module
 module cpu (
-  input clk,
-  input reset
+  input logic clk,
+  input logic reset,
+  
+  output logic [31:0] writedata, dataaddr, pc,
+  output logic memwrite
 );
-
-  logic        mem_write;
-  logic [31:0] pc, instr, read_data, write_data, data_addr;
+  logic [31:0]instr, read_data;
   
   mips mips (
     .clk,
@@ -16,9 +17,9 @@ module cpu (
     .instr,
     .readdata(read_data),
     .pc,
-    .memwrite(mem_write),
-    .aluout(data_addr),
-    .writedata(write_data)
+    .memwrite(memwrite),
+    .aluout(dataaddr),
+    .writedata(writedata)
   );
 
   imem imem (
@@ -28,9 +29,9 @@ module cpu (
 
   dmem dmem (
     .clk,
-    .we(mem_write),
-    .a(data_addr),
-    .wd(write_data),
+    .we(memwrite),
+    .a(dataaddr),
+    .wd(writedata),
     .rd(read_data)
   );
 
